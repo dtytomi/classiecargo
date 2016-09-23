@@ -1,5 +1,5 @@
-<div>
-  <h3 class="col-xs-12 text-center">Or with your account</h3>
+<section class="row">
+  <h3 class="col-xs-12 col-md-12 text-center">Sign in with your account</h3>
   <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
     <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
       <fieldset>
@@ -25,13 +25,16 @@
         <div class="text-center forgot-password">
           <a ui-sref="password.forgot">Forgot your password?</a>
         </div>
-        <p> 
-          &nbsp;
-        </p>
-        <uib-alert type="danger" ng-show="vm.error" class="text-center text-danger">
+        <alert type="danger" ng-show="vm.error" class="text-center text-danger">
           <span ng-bind="vm.error"></span>
-        </uib-alert>
+        </alert>
       </fieldset>
     </form>
   </div>
-</div>
+  <h3 class="col-xs-12 col-md-12 text-center">Or using your social accounts</h3>
+  <div class="col-xs-12 col-md-12 text-center">
+    <img ng-click="callOauthProvider('/api/auth/facebook')" ng-src="/modules/users/client/img/buttons/facebook.png"  >
+    <img ng-click="callOauthProvider('/api/auth/twitter')" ng-src="/modules/users/client/img/buttons/twitter.png" >
+    <img ng-click="callOauthProvider('/api/auth/linkedin')" ng-src="/modules/users/client/img/buttons/in.png">
+  </div>
+</section>

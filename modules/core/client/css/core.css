@@ -18,6 +18,85 @@
   opacity: 0.8;
   width: 28px;
 }
+
+.navbar-custom {
+  background-color: #fff;
+  border-bottom: 1px solid white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.navbar-custom .navbar-toggle {
+  background-color: #9e9e9e;
+  color: white;
+  font-size: 12px;
+}
+.navbar-custom .navbar-toggle:focus,
+.navbar-custom .navbar-toggle:active {
+  border: 1px solid white;
+  outline: none;
+}
+.navbar-custom .navbar-brand {
+  font-weight: 700;
+}
+.navbar-custom .navbar-brand:focus {
+  border: 1px solid white;
+  outline: none;
+}
+.navbar-custom a {
+  color: black;
+}
+
+.navbar-custom .nav li a:hover {
+  background-color: transparent;
+  color: #F44336;
+}
+.navbar-custom .nav li a:focus,
+.navbar-custom .nav li a:active {
+  background-color: transparent;
+  border: 1px solid white;
+  outline: none;
+}
+
+.navbar-custom .nav li.active a {
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #FF9800;
+}
+.navbar-custom .nav li.active a:hover {
+  color: #F44336;
+}
+@media (min-width: 768px) {
+  .navbar-custom {
+    /*padding: 20px 0;*/
+    border-bottom: none;
+    letter-spacing: 1px;
+    -o-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+    -moz-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+    -webkit-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+    transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+  }
+  .navbar-custom.top-nav-collapse {
+    background: white;
+    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0;
+  }
+}
+
+.jumbtron-img {
+  background-image: url('/modules/core/client/img/naija.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.jumbtron > h1 {
+  color: blue;
+  text-transform: uppercase;
+}
+
 .open .header-profile-image,
 a:hover .header-profile-image {
   opacity: 1;

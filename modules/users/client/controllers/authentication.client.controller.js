@@ -5,9 +5,9 @@
     .module('users')
     .controller('AuthenticationController', AuthenticationController);
 
-  AuthenticationController.$inject = ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator'];
+  AuthenticationController.$inject = ['$scope', '$state', '$stateParams', '$http', '$location', '$window', 'Authentication', 'PasswordValidator'];
 
-  function AuthenticationController($scope, $state, $http, $location, $window, Authentication, PasswordValidator) {
+  function AuthenticationController($scope, $state, $stateParams, $http, $location, $window, Authentication, PasswordValidator) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -31,6 +31,10 @@
         $scope.$broadcast('show-errors-check-validity', 'vm.userForm');
 
         return false;
+      }
+
+      if ($stateParams.param1) {
+        vm.credentials.roles = $stateParams.param1;
       }
 
       $http.post('/api/auth/signup', vm.credentials).success(function (response) {

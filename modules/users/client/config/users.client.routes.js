@@ -64,6 +64,24 @@
         controller: 'AuthenticationController',
         controllerAs: 'vm'
       })
+      .state('authentication.admin', {
+        url: '/admin',
+        template: '<ui-view/>',
+        controller: 'AuthenticationController',
+        controllerAs: 'vm'
+      })
+      .state('authentication.admin.signup', {
+        url: '/signup',
+        templateUrl: 'modules/users/client/views/authentication/signup.admin.client.view.html',
+        controller: 'AuthenticationController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Admin signup'
+        },
+        params: {
+          param1: 'admin'
+        }
+      })
       .state('authentication.signup', {
         url: '/signup',
         templateUrl: 'modules/users/client/views/authentication/signup.client.view.html',
