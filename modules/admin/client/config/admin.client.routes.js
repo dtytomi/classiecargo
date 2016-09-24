@@ -49,14 +49,66 @@
         data: {
           pageTitle: 'Edit User {{ userResolve.displayName }}'
         }
+      })
+      .state('admin.orders', {
+        abstract: true,
+        url: '/orders',
+        template: '<ui-view/>'
+      })
+      .state('admin.orders.list', {
+        url: '',
+        templateUrl: 'modules/admin/client/views/orders/list-orders.client.view.html',
+        controller: 'OrdersAdminListController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['admin']
+        }
+      })
+      .state('admin.orders.create', {
+        url: '/create',
+        templateUrl: 'modules/admin/client/views/orders/form-order.client.view.html',
+        controller: 'OrdersAdminController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['admin']
+        },
+        resolve: {
+          orderResolve: newOrder
+        }
+      })
+      .state('admin.orders.edit', {
+        url: '/:orderId/edit',
+        templateUrl: 'modules/admin/client/views/orders/form-order.client.view.html',
+        controller: 'OrdersAdminController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['admin']
+        },
+        resolve: {
+          orderResolve: getOrder
+        }
       });
+  }
 
-    getUser.$inject = ['$stateParams', 'AdminService'];
+  getOrder.$inject = ['$stateParams', 'OrdersService'];
 
-    function getUser($stateParams, AdminService) {
-      return AdminService.get({
-        userId: $stateParams.userId
-      }).$promise;
-    }
+  function getOrder($stateParams, OrdersService) {
+    return OrdersService.get({
+      articleId: $stateParams.articleId
+    }).$promise;
+  }
+
+  newOrder.$inject = ['OrdersService'];
+
+  function newOrder(OrdersService) {
+    return new OrdersService();
+  }
+
+  getUser.$inject = ['$stateParams', 'AdminService'];
+
+  function getUser($stateParams, AdminService) {
+    return AdminService.get({
+      userId: $stateParams.userId
+    }).$promise;
   }
 }());

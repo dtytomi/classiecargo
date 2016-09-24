@@ -23,7 +23,7 @@
           orderResolve: newOrder
         },
         data: {
-          roles: ['user', 'admin'],
+          roles: ['user'],
           pageTitle: 'Orders Create'
         }
       })
@@ -36,7 +36,7 @@
           orderResolve: getOrder
         },
         data: {
-          roles: ['user', 'admin'],
+          roles: ['user'],
           pageTitle: 'Edit Order {{ orderResolve.title }}'
         }
       })
@@ -46,6 +46,7 @@
         controller: 'OrdersListController',
         controllerAs: 'vm',
         data: {
+          roles: ['user'],
           pageTitle: 'Order List'
         }
       })

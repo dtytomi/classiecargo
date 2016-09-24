@@ -13,7 +13,20 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   // body...
-  var order = new Order(req.body);
+
+  var order = new Order({
+    destinationCity: req.body.destCity,
+    destinationCountry: req.body.destCountry.destCountry,
+    destinationAddress: req.body.destAddress,
+    shipCountry: req.body.shipCountry.shipCountry,
+    shipCity: req.body.shipCity,
+    shipAddress: req.body.shipAddress
+  });
+
+  order.packageDetails.push({ modeOfTransportation: req.body.myTransport.modeOfTransportation,
+    size: req.body.mySize.size
+  });
+
   order.user = req.user;
 
   order.save(function (err) {

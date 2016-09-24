@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('orders')
-    .controller('OrdersController', OrdersController);
+    .module('admin.orders')
+    .controller('OrdersAdminController', OrdersAdminController);
 
-  OrdersController.$inject = ['$scope', '$state', 'orderResolve', '$window', 'Authentication'];
+  OrdersAdminController.$inject = ['$scope', '$state', '$window', 'orderResolve', 'Authentication'];
 
-  function OrdersController($scope, $state, order, $window, Authentication) {
+  function OrdersAdminController($scope, $state, $window, order, Authentication) {
     var vm = this;
 
     vm.order = order;
@@ -44,31 +44,27 @@
 
     vm.order.mySize = vm.sizes[0];
 
-    // Remove existing Article
+    // Remove existing Order
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
-        vm.article.$remove($state.go('orders.list'));
+        vm.order.$remove($state.go('admin.orders.list'));
       }
     }
 
-    // Save Article
+    // Save Order
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.orderForm');
         return false;
       }
 
-      // TODO: move create/update logic to service
-      if (vm.order._id) {
-        vm.order.$update(successCallback, errorCallback);
-      } else {
-        vm.order.$save(successCallback, errorCallback);
-      }
+      // Create a new order, or update the current instance
+      vm.order.createOrUpdate()
+        .then(successCallback)
+        .catch(errorCallback);
 
       function successCallback(res) {
-        $state.go('orders.view', {
-          orderId: res._id
-        });
+        $state.go('admin.orders.list'); // should we send the User to the list or the updated Order's view?
       }
 
       function errorCallback(res) {

@@ -40,7 +40,7 @@ var OrderSchema = new Schema({
     default: '',
     trim: true
   },
-  pickUpAddress: {
+  shipAddress: {
     type: String,
     default: '',
     trim: true
@@ -49,17 +49,17 @@ var OrderSchema = new Schema({
     modeOfTransportation: {
       type: [{
         type: String,
-        enum: ['bike', 'truck']
+        enum: ['Bike', 'Truck']
       }],
-      default: ['bike'],
+      default: ['Bike'],
       required: 'Please provide at least one mode of transportation'
     },
     size: {
       type: [{
         type: String,
-        enum: ['light', 'heavy duty']
+        enum: ['Light weight', 'Heavy duty']
       }],
-      default: ['light'],
+      default: ['Light weight'],
       required: 'Please provide at least goods size'
     }
   }],

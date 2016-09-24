@@ -1,13 +1,21 @@
 ---
 declared-services:
-  mean-mongo:
-    label: mongodb
-    plan: 100
+  classiecargo-mlab:
+    label: mlab
+    plan: sandbox
 applications:
-- name: mean
-  host: mean-${random-word}
+- path: .
   memory: 128M
+  instances: 1
+  domain: mybluemix.net
+  name: 'Classie Cargo'
+  host: classiecargo
+  disk_quota: 1024M
   services:
-  - mean-mongo
+  - classiecargo-facebook
+  - classiecargo-twitter
+  - classiecargo-linkedin
+  env:
   env:
     NODE_ENV: cloud-foundry
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
