@@ -1,8 +1,5 @@
 ---
-declared-services:
-  classiecargo-mlab:
-    label: mlab
-    plan: sandbox
+# declared-services:
 applications:
 - path: .
   memory: 128M
@@ -15,7 +12,7 @@ applications:
   - classiecargo-facebook
   - classiecargo-twitter
   - classiecargo-linkedin
-  env:
+  - classiecargo-mlab
   env:
     NODE_ENV: cloud-foundry
   buildpack: https://github.com/cloudfoundry/nodejs-buildpack
