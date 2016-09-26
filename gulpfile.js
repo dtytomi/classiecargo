@@ -129,12 +129,16 @@ gulp.task('watch:server:run-tests', function () {
 });
 
 // CSS linting task
-gulp.task('csslint', function () {
+gulp.task('csslint', function (done) {
   return gulp.src(defaultAssets.client.css)
     .pipe(plugins.csslint('.csslintrc'))
-    .pipe(plugins.csslint.formatter());
-    // Don't fail CSS issues yet
-    // .pipe(plugins.csslint.failFormatter());
+    // I added this update to clear the error of gulp-csslint
+    .pipe(plugins.csslint.reporter())
+    .pipe(plugins.csslint.reporter(function (file) {
+      if (!file.csslint.errorCount) {
+        done();
+      }
+    }));
 });
 
 // ESLint JS linting task
