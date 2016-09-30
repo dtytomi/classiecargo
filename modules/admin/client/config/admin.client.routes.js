@@ -94,7 +94,7 @@
 
   function getOrder($stateParams, OrdersService) {
     return OrdersService.get({
-      articleId: $stateParams.articleId
+      orderId: $stateParams.orderId
     }).$promise;
   }
 

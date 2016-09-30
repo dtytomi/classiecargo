@@ -8,7 +8,7 @@
   OrdersService.$inject = ['$resource'];
 
   function OrdersService($resource) {
-    var Order = $resource('api/orders/:orderId', {
+    var Order = $resource('api/orders/:orderId/:username', {
       orderId: '@_id'
     }, {
       update: {
@@ -49,19 +49,5 @@
       // Log error
       console.log(error);
     }
-  }
-
-  angular
-    .module('orders.services')
-    .factory('UserOrdersService', UserOrdersService);
-
-  UserOrdersService.$inject = ['$resource'];
-
-  function UserOrdersService($resource) {
-    return $resource('api/orders/:username', {}, {
-      update: {
-        method: 'PUT'
-      }
-    });
   }
 }());

@@ -67,7 +67,7 @@
   getOrder.$inject = ['$stateParams', 'OrdersService'];
 
   function getOrder($stateParams, OrdersService) {
-    return OrdersService.get({
+    return OrdersService.query({
       orderId: $stateParams.orderId
     }).$promise;
   }
