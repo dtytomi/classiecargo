@@ -50,4 +50,18 @@
       console.log(error);
     }
   }
+
+  angular
+    .module('orders.services')
+    .factory('UserOrdersService', UserOrdersService);
+
+  UserOrdersService.$inject = ['$resource'];
+
+  function UserOrdersService($resource) {
+    return $resource('api/orders/:username', {}, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
 }());

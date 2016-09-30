@@ -3,13 +3,17 @@
 
   angular
     .module('orders')
-    .controller('OrdersListController', OrdersListController);
+    .controller('UserOrdersListController', UserOrdersListController);
 
-  OrdersListController.$inject = ['OrdersService'];
+  UserOrdersListController.$inject = ['UserOrdersService', 'Authentication'];
 
-  function OrdersListController(OrdersService) {
+  function UserOrdersListController(UserOrdersService, Authentication) {
     var vm = this;
 
-    vm.orders = OrdersService.query();
+    vm.authentication = Authentication;
+
+    vm.orders = UserOrdersService.query({
+      username: vm.authentication.user.username
+    });
   }
 }());

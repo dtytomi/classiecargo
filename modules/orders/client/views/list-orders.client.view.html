@@ -20,7 +20,7 @@
       <td ng-bind="order.packageDetails[0].size"></td>
       <td ng-bind="order.packageDetails[0].modeOfTransportation"></td>
       <td>
-        <a class="btn btn-primary btn-xs" ui-sref="orders.edit({ orderId: vm.order._id })">
+        <a class="btn btn-primary btn-xs" ui-sref="orders.edit({ orderId: order._id })">
           <i class="glyphicon glyphicon-edit"></i>
         </a>
         <a class="btn btn-primary btn-xs" ng-click="vm.remove()">

@@ -43,7 +43,7 @@
       .state('orders.list', {
         url: '',
         templateUrl: 'modules/orders/client/views/list-orders.client.view.html',
-        controller: 'OrdersListController',
+        controller: 'UserOrdersListController',
         controllerAs: 'vm',
         data: {
           roles: ['user'],

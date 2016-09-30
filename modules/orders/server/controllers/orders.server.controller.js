@@ -5,6 +5,7 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
+  User = mongoose.model('User'),
   Order = mongoose.model('Order'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
@@ -99,6 +100,32 @@ exports.list = function (req, res) {
       });
     } else {
       res.json(orders);
+    }
+  });
+};
+
+/**
+ * List of Users Orders by ID
+ */
+exports.userByList = function (req, res) {
+  User.find({ username: req.params.username }, { _id: 1 }, function (err, docs) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      var ids = docs.map(function (doc) {
+        return doc._id;
+      });
+      Order.find({ user: { $in: ids } }).sort('-created').populate('user', 'displayName').exec(function (err, orders) {
+        if (err) {
+          return res.status(400, {
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          res.json(orders);
+        }
+      });
     }
   });
 };

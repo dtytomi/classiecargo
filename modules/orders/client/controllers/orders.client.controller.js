@@ -47,7 +47,7 @@
     // Remove existing Article
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
-        vm.article.$remove($state.go('orders.list'));
+        vm.order.$remove($state.go('orders.list'));
       }
     }
 
