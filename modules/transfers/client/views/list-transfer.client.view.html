@@ -4,15 +4,18 @@
   </div>
   <div class="list-group">
     <a ng-repeat="transfer in vm.tranfers" ui-sref="tranfers.view({ transferId: transfer._id })" class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="transfer.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="transfer.user" ng-bind="transfer.user.displayName"></span>
-        <span ng-if="!transfer.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="transfer.title"></h4>
-      <p class="list-group-item-text" ng-bind="transfer.content"></p>
+      <dl class="dl-horizontal">
+        <dt>Recipent Name:</dt>
+        <dd ng-bind="transfer.recipentName"></dd>
+        <dt>Recipent Address:</dt>
+        <dd ng-bind="transfer.destinationAddress"></dd>
+        <dt>Recipent City:</dt>
+        <dd ng-bind="transfer.destinationCity"></dd>
+        <dt>Recipent Country:</dt>
+        <dd ng-bind="transfer.destinationCountry"></dd>
+        <dt>Amount:</dt>
+        <dd ng-bind="transfer.amount"></dd>
+      </dl>
     </a>
   </div>
 </section>

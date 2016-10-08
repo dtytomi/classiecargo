@@ -41,7 +41,6 @@ var TransferSchema = new Schema({
   amount: {
     type: String
   },
-
   bankTellerNumber: {
     type: String,
     default: ''

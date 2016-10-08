@@ -1,5 +1,6 @@
 (function () {
   // body...
+  'use strict';
 
   angular
     .module('transfers')
@@ -30,7 +31,7 @@
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.transferForm');
         return false;
-      };
+      }
 
       // TODO: move create/update logic to service
       if (vm.transfer._id) {
@@ -40,13 +41,12 @@
       }
 
       function successCallback(res) {
-        state.go('transfer.list');
+        $state.go('transfers.list');
       }
 
       function errorCallback(res) {
         vm.error = res.data.message;
       }
     }
-
   }
 }());
