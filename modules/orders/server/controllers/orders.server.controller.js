@@ -14,11 +14,10 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   // body...
-
   var order = new Order({
-    destinationCity: req.body.destCity,
-    destinationCountry: req.body.destCountry.destCountry,
-    destinationAddress: req.body.destAddress,
+    destinationCity: req.body.destinationCity,
+    destinationCountry: req.body.destinationCountry.destCountry,
+    destinationAddress: req.body.destinationAddress,
     shipCountry: req.body.shipCountry.shipCountry,
     shipCity: req.body.shipCity,
     shipAddress: req.body.shipAddress
@@ -59,7 +58,21 @@ exports.read = function (req, res) {
  * Update an order
  */
 exports.update = function (req, res) {
+
   var order = req.order;
+
+  order.destinationCity = req.body.destinationCity;
+  order.destinationCountry = req.body.destinationCountry.destCountry;
+  order.destinationAddress = req.body.destinationAddress;
+  order.shipCountry = req.body.shipCountry.shipCountry;
+  order.shipCity = req.body.shipCity;
+  order.shipAddress = req.body.shipAddress;
+
+  var size = order.packageDetails.length;
+
+  order.packageDetails.splice(0, size, { modeOfTransportation: req.body.myTransport.modeOfTransportation,
+    size: req.body.mySize.size
+  });
 
   order.save(function (err) {
     if (err) {
@@ -93,6 +106,7 @@ exports.delete = function (req, res) {
  * List of Orders
  */
 exports.list = function (req, res) {
+
   Order.find().sort('-created').populate('user', 'displayName').exec(function (err, orders) {
     if (err) {
       return res.status(400).send({
@@ -108,6 +122,7 @@ exports.list = function (req, res) {
  * List of Users Orders by ID
  */
 exports.userByList = function (req, res) {
+
   User.find({ username: req.params.username }, { _id: 1 }, function (err, docs) {
     if (err) {
       return res.status(400).send({

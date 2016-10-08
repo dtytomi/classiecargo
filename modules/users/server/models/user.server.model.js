@@ -67,6 +67,11 @@ var UserSchema = new Schema({
     lowercase: true,
     trim: true
   },
+  phoneNumber: {
+    type: String,
+    default: '',
+    validate: [validateLocalStrategyProperty, 'Please fill in your phone number']
+  },
   password: {
     type: String,
     default: ''

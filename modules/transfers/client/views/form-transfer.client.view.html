@@ -1,0 +1,51 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.transfer._id ? 'Edit Funds Transfer' : 'Transfer Fund'}}</h1>
+  </div>
+
+  <div class="col-md-12">
+    <form class="form-horizontal" name="vm.form.transferForm" class="form-horizontal" ng-submit="vm.save(vm.form.orderForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group">
+          <label for="recipentName" class="col-md-3 control-label">Recipent Name:</label>
+          <div class="col-md-3">
+            <input id="recipentName" class="form-control" ng-model="vm.transfer.recipentName" placeholder="Recipent's Name: Okon Debo" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="destCountry" class="col-md-3 control-label">Destination Country:</label>
+          <div class="col-md-3">
+            <select id="destCountry" class="form-control" ng-model="vm.transfer.destinationCountry" ng-options="country.destCountry for country in vm.destCountries"></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="destCity" class="col-md-3 control-label">Destination City:</label>
+          <div class="col-md-7">
+            <input type="text" ng-model="vm.transfer.destinationCity" class="form-control" id="destCity" placeholder="Destination City e.g Surulere, Accra">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="destAddress" class="col-md-3 control-label">Destination Address:</label>
+          <div class="col-md-7">
+            <input type="text" ng-model="vm.transfer.destinationAddress" class="form-control" id="destAddress" placeholder="Destination Address">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="amount" class="col-md-3 control-label">Amount:</label>
+          <div class="col-md-7">
+            <input type="text" ng-model="vm.transfer.amount" class="form-control" id="amount" placeholder="#5000">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-7">
+            <button type="submit" class="btn btn-default">{{vm.order._id ? 'Update' : 'Create'}}</button>
+          </div>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+</section>

@@ -21,9 +21,12 @@ var OrderSchema = new Schema({
     trim: true
   },
   destinationCountry: {
-    type: String,
-    default: '',
-    trim: true
+    type: [{
+      type: String,
+      enum: ['Ghana', 'Nigeria']
+    }],
+    default: ['Ghana'],
+    required: 'Please fill the destination country'
   },
   destinationAddress: {
     type: String,
@@ -31,9 +34,12 @@ var OrderSchema = new Schema({
     trim: true
   },
   shipCountry: {
-    type: String,
-    default: '',
-    trim: true
+    type: [{
+      type: String,
+      enum: ['Ghana', 'Nigeria']
+    }],
+    default: ['Nigeria'],
+    required: 'Please fill the shipping country'
   },
   shipCity: {
     type: String,

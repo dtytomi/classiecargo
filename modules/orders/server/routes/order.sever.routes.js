@@ -3,9 +3,7 @@
 /**
  * Module dependencies
  */
-var path = require('path'),
-  ordersPolicy = require('../policies/orders.server.policy'),
-  users = require(path.resolve('./modules/users/server/controllers/users.server.controller')),
+var ordersPolicy = require('../policies/orders.server.policy'),
   orders = require('../controllers/orders.server.controller');
 
 module.exports = function (app) {
@@ -14,7 +12,7 @@ module.exports = function (app) {
     .get(orders.list)
     .post(orders.create);
 
-  app.route('/api/orders/:username').all(ordersPolicy.isAllowed)
+  app.route('/api/orders/user/:username').all(ordersPolicy.isAllowed)
     .get(orders.userByList);
 
   // Single article routes
@@ -25,5 +23,4 @@ module.exports = function (app) {
 
   // Finish by binding the article middleware
   app.param('orderId', orders.orderByID);
-  app.param('userId', users.userByID);
 };

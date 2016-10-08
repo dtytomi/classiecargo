@@ -5,14 +5,14 @@
     .module('orders')
     .controller('UserOrdersListController', UserOrdersListController);
 
-  UserOrdersListController.$inject = ['OrdersService', 'Authentication'];
+  UserOrdersListController.$inject = ['UserOrdersService', 'Authentication'];
 
-  function UserOrdersListController(OrdersService, Authentication) {
+  function UserOrdersListController(UserOrdersService, Authentication) {
     var vm = this;
 
     vm.authentication = Authentication;
 
-    vm.orders = OrdersService.query({
+    vm.orders = UserOrdersService.query({
       username: vm.authentication.user.username
     });
   }

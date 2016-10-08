@@ -1,6 +1,12 @@
 <section>
   <div class="page-header">
-    <h1>{{vm.order._id ? 'Edit Order' : 'New Order'}}</h1>
+    <h1>{{vm.order._id ? 'Edit Order' : 'New Order'}} 
+      <span class="pull-right">
+        <a class="btn btn-primary " ng-click="vm.remove()">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </span>
+    </h1>
   </div>
   <div class="col-md-12">
     <form class="form-horizontal" name="vm.form.orderForm" class="form-horizontal" ng-submit="vm.save(vm.form.orderForm.$valid)" novalidate>

@@ -19,14 +19,14 @@
     menuService.addSubMenuItem('topbar', 'orders', {
       title: 'List Orders',
       state: 'orders.list',
-      roles: ['*']
+      roles: ['user']
     });
 
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'orders', {
       title: 'Create Order',
       state: 'orders.create',
-      roles: ['user']
+      roles: ['*']
     });
   }
 }());

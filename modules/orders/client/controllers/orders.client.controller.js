@@ -14,7 +14,6 @@
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
-    vm.remove = remove;
     vm.save = save;
 
     vm.shipCountries = [
@@ -28,7 +27,7 @@
     ];
 
     vm.order.shipCountry = vm.shipCountries[0];
-    vm.order.destCountry = vm.destCountries[0];
+    vm.order.destinationCountry = vm.destCountries[0];
 
     vm.transportation = [
       { modeOfTransportation: 'Bike' },
@@ -44,14 +43,15 @@
 
     vm.order.mySize = vm.sizes[0];
 
-    // Remove existing Article
-    function remove() {
-      if ($window.confirm('Are you sure you want to delete?')) {
-        vm.order.$remove($state.go('orders.list'));
-      }
-    }
+    $scope.alerts = [
+      { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' }
+    ];
 
-    // Save Article
+    $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
+
+    // Save Order
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.orderForm');
@@ -66,9 +66,7 @@
       }
 
       function successCallback(res) {
-        $state.go('orders.view', {
-          orderId: res._id
-        });
+        $state.go('orders.list');
       }
 
       function errorCallback(res) {

@@ -49,25 +49,13 @@
           roles: ['user'],
           pageTitle: 'Order List'
         }
-      })
-      .state('orders.view', {
-        url: '/:orderId',
-        templateUrl: 'modules/orders/client/views/view-order.client.view.html',
-        controller: 'OrdersController',
-        controllerAs: 'vm',
-        resolve: {
-          orderResolve: getOrder
-        },
-        data: {
-          pageTitle: 'Order {{ orderResolve.title }}'
-        }
       });
   }
 
   getOrder.$inject = ['$stateParams', 'OrdersService'];
 
   function getOrder($stateParams, OrdersService) {
-    return OrdersService.query({
+    return OrdersService.get({
       orderId: $stateParams.orderId
     }).$promise;
   }
