@@ -17,5 +17,6 @@
     vm.transfers = UserTransfersService.query({
       username: vm.authentication.user.username
     });
+    console.log(vm.transfers);
   }
 }());

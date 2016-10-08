@@ -4,11 +4,11 @@
 
   angular
     .module('transfers.services')
-    .factory('TransfersServce', TransfersServce);
+    .factory('TransfersService', TransfersService);
 
-  TransfersServce.$inject = ['$resource'];
+  TransfersService.$inject = ['$resource'];
 
-  function TransfersServce($resource) {
+  function TransfersService($resource) {
     // body...
     var Transfer = $resource('api/transfers/:transferId', {
       transferId: '@_id'

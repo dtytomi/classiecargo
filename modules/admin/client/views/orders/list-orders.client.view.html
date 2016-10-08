@@ -7,36 +7,38 @@
       </a>
     </h1>
   </div>
-  <table class="table table-bordered">
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Shipping Address</th> 
-      <th>Destination Address</th>
-      <th>Size</th>
-      <th>Mode of Transportation</th>
-      <th>Edit / Delete</th>
-    </tr>
-    <tr ng-repeat="order in vm.orders">
-      <td ng-bind="$index + 1"></td>
-      <td ng-if="order.user" ng-bind="order.user.displayName"></td>
-      <td ng-if="!order.user">Deleted User</td>
-      <td ng-bind="order.created | date:'mediumDate'"></td>
-      <td ng-bind="order.shipAddress"></td> 
-      <td ng-bind="order.destinationAddress"></td>
-      <td ng-bind="order.packageDetails[0].size"></td>
-      <td ng-bind="order.packageDetails[0].modeOfTransportation"></td>
-      <td>
-        <a class="btn btn-primary btn-xs" ui-sref="admin.orders.edit({orderId: order._id})">
-          <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn btn-primary btn-xs" ng-click="vm.remove()">
-          <i class="glyphicon glyphicon-trash"></i>
-        </a>
-      </td>
-    </tr>
-  </table>
+  <div class="table-responsive" >
+    <table class="table table-bordered">
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Shipping Address</th> 
+        <th>Destination Address</th>
+        <th>Size</th>
+        <th>Mode of Transportation</th>
+        <th>Edit / Delete</th>
+      </tr>
+      <tr ng-repeat="order in vm.orders">
+        <td ng-bind="$index + 1"></td>
+        <td ng-bind="order.created | date:'mediumDate'"></td>
+        <td ng-if="order.user" ng-bind="order.user.displayName"></td>
+        <td ng-if="!order.user">Deleted User</td>
+        <td ng-bind="order.shipAddress"></td> 
+        <td ng-bind="order.destinationAddress"></td>
+        <td ng-bind="order.packageDetails[0].size"></td>
+        <td ng-bind="order.packageDetails[0].modeOfTransportation"></td>
+        <td>
+          <a class="btn btn-primary btn-xs" ui-sref="admin.orders.edit({orderId: order._id})">
+            <i class="glyphicon glyphicon-edit"></i>
+          </a>
+          <a class="btn btn-primary btn-xs" ng-click="vm.remove()">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
   <div class="alert alert-warning text-center" data-ng-if="orders.$resolved && !orders.length">
     No orders yet, why don't you <a data-ui-sref="admin.orders.create">create one</a>?
   </div>

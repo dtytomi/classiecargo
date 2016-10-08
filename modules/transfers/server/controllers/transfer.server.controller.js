@@ -14,7 +14,13 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   // body...
-  var transfer = new Transfer(req.body);
+  var transfer = new Transfer({
+    recipentName: req.body.recipentName,
+    destinationAddress: req.body.destinationAddress,
+    destinationCity: req.body.destinationCity,
+    destinationCountry: req.body.destinationCountry.destCountry,
+    amount: req.body.amount
+  });
 
   transfer.user = req.user;
 
@@ -49,6 +55,13 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
 
   var transfer = req.transfer;
+
+  transfer.recipentName = req.body.recipentName;
+  transfer.destinationAddress = req.body.destinationAddress;
+  transfer.destinationCity = req.body.destinationCity;
+  transfer.destinationCountry = req.body.destinationCountry.destCountry;
+  transfer.amount = req.body.amount;
+  transfer.bankTellerNumber = req.body.bankTellerNumber;
 
   transfer.save(function (err) {
     if (err) {

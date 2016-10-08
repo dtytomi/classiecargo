@@ -1,0 +1,41 @@
+<section>
+  <div class="page-header">
+    <h1>Funds Transfers
+      <a class="btn btn-primary pull-right" data-ui-sref="admin.transfers.create">
+        <i class="glyphicon glyphicon-plus"></i>
+      </a>
+    </h1>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Recipent Name</th> 
+        <th>Destination Address</th>
+        <th>Destination City</th>
+        <th>Amount</th>
+        <th>Edit</th>
+      </tr>
+      <tr ng-repeat="transfer in vm.transfers">
+        <td ng-bind="$index + 1"></td>
+        <td ng-bind="transfer.created | date:'mediumDate'"></td>
+        <td ng-if="transfer.user" ng-bind="transfer.user.displayName"></td>
+        <td ng-if="!transfer.user">Deleted User</td>
+        <td ng-bind="transfer.recipentName"></td> 
+        <td ng-bind="transfer.destinationAddress"></td>
+        <td ng-bind="transfer.destinationCity"></td>
+        <td ng-bind="transfer.amount"></td>
+        <td>
+          <a class="btn btn-primary btn-xs" ui-sref="admin.transfers.edit({transferId: transfer._id})">
+            <i class="glyphicon glyphicon-edit"></i>
+          </a>
+          <a class="btn btn-primary btn-xs" ng-click="vm.remove()">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>

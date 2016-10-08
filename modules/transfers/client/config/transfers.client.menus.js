@@ -14,7 +14,7 @@
       title: 'Transfer Funds',
       state: 'transfers',
       type: 'dropdown',
-      roles: ['user']
+      roles: ['user', 'admin']
     });
 
     // Add the dropdown create item

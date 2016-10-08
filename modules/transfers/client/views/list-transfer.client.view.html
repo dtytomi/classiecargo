@@ -1,9 +1,14 @@
 <section>
   <div class="page-header">
-    <h1>Funds</h1>
+    <h1>Funds Transfers</h1>
   </div>
-  <div class="list-group">
-    <a ng-repeat="transfer in vm.tranfers" ui-sref="tranfers.view({ transferId: transfer._id })" class="list-group-item">
+  <ul class="list-group">
+    <li ng-repeat="transfer in vm.transfers" class="list-group-item">
+      <div class="pull-right" >
+        <a class="btn btn-primary" ui-sref="transfers.edit({ transferId: transfer._id })">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+      </div>
       <dl class="dl-horizontal">
         <dt>Recipent Name:</dt>
         <dd ng-bind="transfer.recipentName"></dd>
@@ -16,6 +21,6 @@
         <dt>Amount:</dt>
         <dd ng-bind="transfer.amount"></dd>
       </dl>
-    </a>
-  </div>
+    </li>
+  </ul>
 </section>

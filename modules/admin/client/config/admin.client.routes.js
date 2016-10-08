@@ -87,6 +87,44 @@
         resolve: {
           orderResolve: getOrder
         }
+      })
+      .state('admin.transfers', {
+        abstract: true,
+        url: '/transfers',
+        template: '<ui-view/>'
+      })
+      .state('admin.transfers.list', {
+        url: '',
+        templateUrl: 'modules/admin/client/views/transfers/list-transfer.client.view.html',
+        controller: 'AdminTransfersListController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['admin']
+        }
+      })
+      .state('admin.transfers.create', {
+        url: '/create',
+        templateUrl: 'modules/admin/client/views/transfers/form-transfer.client.view.html',
+        controller: 'AdminTransferController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['admin']
+        },
+        resolve: {
+          transferResolve: newTransfer
+        }
+      })
+      .state('admin.transfers.edit', {
+        url: '/:transferId/edit',
+        templateUrl: 'modules/admin/client/views/transfers/form-transfer.client.view.html',
+        controller: 'AdminTransferController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['admin']
+        },
+        resolve: {
+          transferResolve: getTransfer
+        }
       });
   }
 
@@ -102,6 +140,22 @@
 
   function newOrder(OrdersService) {
     return new OrdersService();
+  }
+
+  getTransfer.$inject = ['$stateParams', 'TransfersService'];
+
+  function getTransfer($stateParams, TransfersService) {
+    // body...
+    return TransfersService.get({
+      transferId: $stateParams.transferId
+    }).$promise;
+  }
+
+  newTransfer.$inject = ['TransfersService'];
+
+  function newTransfer(TransfersService) {
+    // body...
+    return new TransfersService();
   }
 
   getUser.$inject = ['$stateParams', 'AdminService'];

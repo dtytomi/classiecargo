@@ -12,14 +12,14 @@
     // body...
     $stateProvider
       .state('transfers', {
-        absract: true,
+        abstract: true,
         url: '/transfers',
         template: '<ui-view>'
       })
       .state('transfers.create', {
         url: '/sendfund',
         templateUrl: 'modules/transfers/client/views/form-transfer.client.view.html',
-        controller: 'transferController',
+        controller: 'TransfersController',
         controllerAs: 'vm',
         resolve: {
           transferResolve: newTransfer
@@ -32,14 +32,14 @@
       .state('transfers.edit', {
         url: '/:transferId/edit',
         templateUrl: 'modules/transfers/client/views/form-transfer.client.view.html',
-        controller: 'transferController',
+        controller: 'TransfersController',
         controllerAs: 'vm',
         resolve: {
           transferResolve: getTransfer
         },
         data: {
           roles: ['user'],
-          pageTitle: 'Update Fund Details'
+          pageTitle: 'Update Fund Details {{ transferResolve.title }}'
         }
       })
       .state('transfers.list', {
@@ -54,20 +54,20 @@
       });
   }
 
-  getTransfer.$inject = ['$stateParams', 'TransfersServce'];
+  getTransfer.$inject = ['$stateParams', 'TransfersService'];
 
-  function getTransfer($stateParams, TransfersServce) {
+  function getTransfer($stateParams, TransfersService) {
     // body...
-    return TransfersServce.get({
+    return TransfersService.get({
       transferId: $stateParams.transferId
     }).$promise;
   }
 
-  newTransfer.$inject = ['TransfersServce'];
+  newTransfer.$inject = ['TransfersService'];
 
-  function newTransfer(TransfersServce) {
+  function newTransfer(TransfersService) {
     // body...
-    return new TransfersServce();
+    return new TransfersService();
   }
 
 }());

@@ -4,11 +4,11 @@
 
   angular
     .module('transfers')
-    .controller('TransfersController', TransfersController);
+    .controller('AdminTransferController', AdminTransferController);
 
-  TransfersController.$inject = ['$scope', '$state', 'transferResolve', '$window', 'Authentication'];
+  AdminTransferController.$inject = ['$scope', '$state', 'transferResolve', '$window', 'Authentication'];
 
-  function TransfersController ($scope, $state, transfer, $window, Authentication) {
+  function AdminTransferController ($scope, $state, transfer, $window, Authentication) {
     // body...
     var vm = this;
 
@@ -16,6 +16,7 @@
     vm.Authentication = Authentication;
     vm.error = null;
     vm.form = {};
+    vm.remove = remove;
     vm.save = save;
 
     vm.destCountries = [
@@ -25,8 +26,16 @@
 
     vm.transfer.destinationCountry = vm.destCountries[0];
 
+    // Remove existing Order
+    function remove() {
+      if ($window.confirm('Are you sure you want to delete?')) {
+        vm.order.$remove($state.go('admin.transfers.list'));
+      }
+    }
+
     // Save Transfer
     function save(isValid) {
+      alert('Ayo');
       // body...
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.transferForm');
@@ -41,7 +50,7 @@
       }
 
       function successCallback(res) {
-        $state.go('transfers.list');
+        $state.go('admin.transfers.list');
       }
 
       function errorCallback(res) {

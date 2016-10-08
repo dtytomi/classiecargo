@@ -9,19 +9,7 @@
         <div class="form-group">
           <label for="recipentName" class="col-md-3 control-label">Recipent Name:</label>
           <div class="col-md-5">
-            <input id="recipentName" class="form-control" ng-model="vm.transfer.recipentName" placeholder="Recipent's Name: Okon Debo" required >
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="destAddress" class="col-md-3 control-label">Destination Address:</label>
-          <div class="col-md-7">
-            <input type="text" ng-model="vm.transfer.destinationAddress" class="form-control" id="destAddress" placeholder="Destination Address" required >
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="destCity" class="col-md-3 control-label">Destination City:</label>
-          <div class="col-md-7">
-            <input type="text" ng-model="vm.transfer.destinationCity" class="form-control" id="destCity" placeholder="Destination City e.g Surulere, Accra" required >
+            <input id="recipentName" class="form-control" ng-model="vm.transfer.recipentName" placeholder="Recipent's Name: Okon Debo" >
           </div>
         </div>
         <div class="form-group">
@@ -31,15 +19,21 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="amount" class="col-md-3 control-label">Amount:</label>
+          <label for="destCity" class="col-md-3 control-label">Destination City:</label>
           <div class="col-md-7">
-            <input type="text" ng-model="vm.transfer.amount" class="form-control" id="amount" placeholder="#5000" required>
+            <input type="text" ng-model="vm.transfer.destinationCity" class="form-control" id="destCity" placeholder="Destination City e.g Surulere, Accra">
           </div>
         </div>
-        <div class="form-group" ng-if="vm.transfer._id">
-          <label for="bankteller" class="col-md-3 control-label">Bank Teller:</label>
+        <div class="form-group">
+          <label for="destAddress" class="col-md-3 control-label">Destination Address:</label>
           <div class="col-md-7">
-            <input type="text" ng-model="vm.transfer.bankTeller" class="form-control" id="bankteller" placeholder="Bank Teller" required>
+            <input type="text" ng-model="vm.transfer.destinationAddress" class="form-control" id="destAddress" placeholder="Destination Address">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="amount" class="col-md-3 control-label">Amount:</label>
+          <div class="col-md-7">
+            <input type="text" ng-model="vm.transfer.amount" class="form-control" id="amount" placeholder="#5000">
           </div>
         </div>
         <div class="form-group">
