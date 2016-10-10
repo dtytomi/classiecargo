@@ -35,7 +35,6 @@
 
     // Save Transfer
     function save(isValid) {
-      alert('Ayo');
       // body...
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.transferForm');
