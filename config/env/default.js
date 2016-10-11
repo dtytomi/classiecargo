@@ -25,7 +25,7 @@ module.exports = {
     secure: false
   },
   // sessionSecret should be changed for security measures and concerns
-  sessionSecret: process.env.SESSION_SECRET || 'Ebute Ero',
+  sessionSecret: process.env.SESSION_SECRET || 'Classiecargo',
   // sessionKey is the cookie session name
   sessionKey: 'sessionId',
   sessionCollection: 'sessions',
